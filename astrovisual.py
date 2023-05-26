@@ -13,11 +13,11 @@ def astro_visual():
         req = requests.get(f"http://localhost:5136/api/ZodiacProfiles/Login/{username}/{password}")
     except requests.exceptions.RequestException as e:
         print("Servidor fora do ar")
-        return
+        return False
     else:
         if req.status_code != 200:
             print(f"Usuário ou Senha incorreto")
-            return
+            return False
         userdata = req.json()
 
     os.system('cls')
@@ -25,6 +25,7 @@ def astro_visual():
     print(f'Nome: {userdata["name"]}')
     print(f'Sobre Mim: {userdata["description"]}')
     print(f'Signo: {userdata["signName"]}')
+    print(f'Membro: { "Premium" if  userdata["membership"] else "Free"}')
 
     sign_data = userdata["signData"]
 
@@ -37,8 +38,25 @@ def astro_visual():
         print(f'Bebida do Dia: {sign_data["drink"]}')
         print(f'Sorte no Amor: {sign_data["love"]}')
 
+    return True
+
 
 class AstroVisual:
     if __name__ == '__main__':
-        astro_visual()
-        input()
+        while True:
+            if not astro_visual():
+                logoff_input = input("Pressione 1 para tentar novamente ou 2 para sair\n")
+                os.system('cls')
+                if logoff_input == '1':
+                    continue
+                else:
+                    break
+                continue
+            else:
+                print(f'=' * 55)
+                logoff_input = input("Pressione 1 para fazer logout ou 2 para sair\n")
+                os.system('cls')
+                if logoff_input == '1':
+                    continue
+                else:
+                    break

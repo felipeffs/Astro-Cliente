@@ -1,4 +1,5 @@
 import requests
+import os
 
 
 def login():
@@ -10,6 +11,9 @@ def login():
 def make_a_request():
     user_id = int(input("id do usuário: "))
     req = requests.get(f"http://localhost:5136/api/ZodiacProfiles/{user_id}").json()
+
+    os.system('cls')
+
     print(f'Nome: {req["name"]}')
     print(f'Sobre Mim: {req["description"]}')
     print(f'Signo: {req["signName"]}')

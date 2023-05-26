@@ -57,30 +57,6 @@ class WindowLogin(QMainWindow):
 
         if user == "ABA" and psswrd == "123":
             self.label.setText("APROVADO")
-            window = WindowProfile()
-            window.show()
-
-
-class WindowProfile(QMainWindow):
-    def __init__(self):
-        super().__init__()
-        base = QWidget()
-        layout = QVBoxLayout()
-
-        QApplication.setApplicationName("Horoscopo do Dia")
-
-        font = QFont("Inter")
-        font.setPixelSize(25)
-
-        label = QLabel('Tela de Login')
-        label.setFont(font)
-        label.setAlignment(Qt.AlignmentFlag(Qt.AlignCenter))
-
-        layout.addWidget(label)
-
-        base.setLayout(layout)
-
-        self.setCentralWidget(base)
 
 
 window = WindowLogin()
